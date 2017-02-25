@@ -1,21 +1,48 @@
 require('minitest/autorun')
 require('pry')
 require_relative('../models/burger.rb')
+require_relative('../models/restaurant.rb')
+require_relative('../models/address.rb')
 
 class TestBurger < Minitest::Test
 
   def setup
     options1 = {
+      'street_addr' => '21',
+      'street' => 'Lothian Road',
+      'area' => '',
+      'city' => 'Edinburgh',
+      'post_code' => 'EH1 2AB',
+      'telephone' => '+44 1234 567890'
+    }
+    @address1= Address.new(options1)
+    options2 = {
+      'street_addr' =>'22',
+      'street' =>'Lothian Road',
+      'area' =>'',
+      'city' =>'Edinburgh',
+      'post_code' =>'EH1 2AB',
+      'telephone' => '+44 1234 567891'
+    }
+    @address2 = Address.new(options2)
+    @address1.save
+    @address2.save
+    options3 = {
+      'name' => "Big Kahuna",
+      'address_id' =>  @address1.id
+    }
+    @restaurant3 = Restaurant.new(options3)
+    options4 = {
       'name' => "Big Kahuna with cheese",
       'price' => 999,
-      'restaurant_id' => 1,
+      'restaurant_id' => @restaurant3.id,
       'preference' => 3
     }
-    @burger1 = Burger.new(options1)
-
+    @burger1 = Burger.new(options4)
   end
 
   def test_burger_has_params
+    
     assert_equal(999, @burger1.price )
     assert_equal(1, @burger1.restaurant_id )
     assert_equal(3, @burger1.preference )
@@ -31,7 +58,8 @@ class TestBurger < Minitest::Test
   def test_has_id_after_save
     assert_equal(true,  @burger1.id == 0 )
     @burger1.save
-    assert_equal(true,  @burger1.id != 0 )
+    binding.pry
+    assert_equal(true,  @burger1.id.is_a?(Fixnum) && @burger1.id != 0 )
   end
 
 end

@@ -5,7 +5,7 @@ DROP TABLE IF EXISTS addresses;
 
 -- the following table is named to work with the access routines which assume
 -- a mapping of ruby object Class 'Name' to SQL table 'names'
--- unfortunately normal English breaks this for the case of address...  alternative would be to change name to Location 
+-- unfortunately normal English breaks this for the case of address...  alternative would be to change name to Location  / locations, or update Crud.rb with a pluralise method to cope with this edge case. 
 
 CREATE TABLE addresss (
   id SERIAL4 PRIMARY KEY,
