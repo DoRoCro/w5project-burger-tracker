@@ -2,16 +2,18 @@ require('date')
 require_relative('../db/crud.rb')
 class Deal < Crud
   
-  attr_reader :id, :label, :applies_to, :day, :restaurant_id
+  attr_reader :id, :label, :burgers, :day, :restaurant_id, :discount
   def initialize(options)
     @id = options['id'].to_i if options['id']
     @label = options['label']
-    @applies_to = options['applies_to']
+    @burgers = options['burgers']
     @day = Date.parse(options['day'])
     @restaurant_id = options['restaurant_id']
     @discount = options['discount']
   end
 
-
+  def set_discount(discount)
+    @discount = discount
+  end
 
 end

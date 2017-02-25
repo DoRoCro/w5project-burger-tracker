@@ -14,7 +14,7 @@ options5 = {
 
 options6 = {
   'label' => "Big Opening 2 for 1",
-  'applies_to' => [@burger1, @burger2],
+  'burgers' => [@burger1, @burger2],
   'day' => "2017-03-02",
   'restaurant_id' => @restaurant3.id,      # may be redundant info as inherited from burgers
   'discount' => 0.5
@@ -23,3 +23,6 @@ options6 = {
 
 binding.pry
 @deal1.save
+
+@deal1.set_discount(0.4)
+@deal1.update

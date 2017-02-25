@@ -54,7 +54,7 @@ class TestDeal < Minitest::Test
 
     options6 = {
       'label' => "Big Opening 2 for 1",
-      'applies_to' => [@burger1, @burger2],
+      'burgers' => [@burger1, @burger2],
       'day' => "2017-03-02",
       'restaurant_id' => @restaurant3.id,      # may be redundant info as inherited from burgers
       'discount' => 0.5
@@ -66,7 +66,7 @@ class TestDeal < Minitest::Test
     def test_deal_has_params
       assert_equal('Big Opening 2 for 1', @deal1.label )
       assert_equal(@restaurant3.id, @deal1.restaurant_id )
-      assert_equal([@burger1, @burger2], @deal1.applies_to )
+      assert_equal([@burger1, @burger2], @deal1.burgers )
       date = Date.parse("2017-03-02")
       assert_equal(date, @deal1.day)
     end
