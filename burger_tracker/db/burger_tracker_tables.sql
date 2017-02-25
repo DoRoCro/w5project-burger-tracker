@@ -16,3 +16,17 @@ CREATE TABLE addresss (
   post_code VARCHAR(255),
   telephone VARCHAR(255)
 );
+
+CREATE TABLE restaurants (
+  id SERIAL4 PRIMARY KEY,
+  name VARCHAR(255),
+  address_id INT4 REFERENCES addresss(id)
+  );
+
+CREATE TABLE burgers (
+  id SERIAL4 PRIMARY KEY,
+  name VARCHAR(255),
+  price DECIMAL(8,2),
+  restaurant_id INT4 REFERENCES restaurants(id),
+  preference INT4
+);
