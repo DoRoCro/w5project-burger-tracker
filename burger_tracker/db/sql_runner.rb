@@ -4,15 +4,14 @@ require('logger')
 class SqlRunner
 
   def self.run( sql )
-    # logger = Logger.new(STDOUT)
-    # logger.info(sql)
-    # logger.close
+    logger = Logger.new('sql.log')
+    logger.info(sql)
     begin
       db = PG.connect({ dbname: 'burger_tracker', host: 'localhost' })
       result = db.exec( sql )
     rescue  PG::Error => err
       # snippet from PG docs at https://deveiate.org/code/pg/PG/Result.html
-      p [
+      logger.error( [
           err.result.error_field( PG::Result::PG_DIAG_SEVERITY ),
           err.result.error_field( PG::Result::PG_DIAG_SQLSTATE ),
           err.result.error_field( PG::Result::PG_DIAG_MESSAGE_PRIMARY ),
@@ -25,9 +24,10 @@ class SqlRunner
           err.result.error_field( PG::Result::PG_DIAG_SOURCE_FILE ),
           err.result.error_field( PG::Result::PG_DIAG_SOURCE_LINE ),
           err.result.error_field( PG::Result::PG_DIAG_SOURCE_FUNCTION ),
-      ]
+      ] ) 
     ensure
       db.close
+      logger.close
     end
     return result
   end
