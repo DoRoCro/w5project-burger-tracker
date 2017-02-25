@@ -9,10 +9,9 @@ class Deal < Crud
     @applies_to = options['applies_to']
     @day = Date.parse(options['day'])
     @restaurant_id = options['restaurant_id']
+    @discount = options['discount']
   end
 
-  # def save()
 
-  # end
 
 end

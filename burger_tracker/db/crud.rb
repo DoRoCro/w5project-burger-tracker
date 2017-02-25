@@ -12,13 +12,11 @@ class Crud
 # # CREATE METHODS
 
   def save()  
-    arrays_to_save = []       # to deal with any list arrays in instance variables                                
     sql = "INSERT INTO #{self.class.get_table_from_class} 
       ( #{self.get_table_fields}) 
       VALUES (#{self.get_values_list()}) RETURNING * ;"
     db_data = SqlRunner.run(sql)
     @id = db_data.first['id'].to_i
-    binding.pry
     self.arrays_to_save.each {|array| save_array_1_to_many(array, self)}
     return self.class.new(db_data.first)
   end

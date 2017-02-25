@@ -27,7 +27,7 @@ CREATE TABLE burgers (
   id SERIAL4 PRIMARY KEY,
   name VARCHAR(255),
   price INT,
-  restaurant_id INT4 REFERENCES restaurants(id),
+  restaurant_id INT4 REFERENCES restaurants(id), ON DELETE CASCADE
   preference INT4
 );
 
@@ -35,10 +35,10 @@ CREATE TABLE deals (
   id SERIAL4 PRIMARY KEY,
   label VARCHAR(255),
   day DATE,
-  restaurant_id INT4 REFERENCES restaurants(id),
+  restaurant_id INT4 REFERENCES restaurants(id) ON DELETE CASCADE,
   discount DECIMAL(5,2)  
 );
 CREATE TABLE burgers_for_deals (
-  deal_id INT4 REFERENCES deals(id),
-  burger_id INT4 REFERENCES burgers(id)
+  deal_id INT4 REFERENCES deals(id) ON DELETE CASCADE,
+  burger_id INT4 REFERENCES burgers(id) ON DELETE CASCADE
 );
