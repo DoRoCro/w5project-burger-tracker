@@ -30,3 +30,15 @@ CREATE TABLE burgers (
   restaurant_id INT4 REFERENCES restaurants(id),
   preference INT4
 );
+
+CREATE TABLE deals (
+  id SERIAL4 PRIMARY KEY,
+  label VARCHAR(255),
+  day DATE,
+  restaurant_id INT4 REFERENCES restaurants(id),
+  discount DECIMAL(5,2)  
+);
+CREATE TABLE burgers_for_deals (
+  deal_id INT4 REFERENCES deals(id),
+  burger_id INT4 REFERENCES burgers(id)
+);

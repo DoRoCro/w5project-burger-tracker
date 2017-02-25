@@ -91,10 +91,20 @@ class Crud
     variables.each do |x|                   # want to single quote strings in SQL, not quote other types 
       if instance_variable_get(x).class == String
         values_list += "'" + instance_variable_get(x).to_s + "', "
+      elsif instance_variable_get(x).class == Array
+          # special handling for 1-n relationship assuming array all of same class
+          x.save_array_1_to_many
       else
         values_list += instance_variable_get(x).to_s + ", "
       end
     end
     values_list.chop!.chop!         # strip trailing comma and space from assembled string
+  end
+
+  def save_array_1_to_many
+    self.each do
+      # save each element into a table (arrayelement.class)s_for_(object.class)s
+      # as a 1 to many relation
+    end
   end
 end
