@@ -40,5 +40,5 @@ require('pry')
   @burger1 = Burger.new(options4)
 
 @burger1 = Burger.new(options4)
-# binding.pry
+binding.pry
 @burger1.save

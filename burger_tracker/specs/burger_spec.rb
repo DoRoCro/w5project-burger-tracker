@@ -32,19 +32,22 @@ class TestBurger < Minitest::Test
       'address_id' =>  @address1.id
     }
     @restaurant3 = Restaurant.new(options3)
+    @restaurant3.save
+
     options4 = {
       'name' => "Big Kahuna with cheese",
       'price' => 999,
       'restaurant_id' => @restaurant3.id,
       'preference' => 3
     }
+    
     @burger1 = Burger.new(options4)
   end
 
   def test_burger_has_params
     
     assert_equal(999, @burger1.price )
-    assert_equal(1, @burger1.restaurant_id )
+    assert_equal(@restaurant3.id, @burger1.restaurant_id )
     assert_equal(3, @burger1.preference )
   end
 
@@ -56,9 +59,8 @@ class TestBurger < Minitest::Test
   end
 
   def test_has_id_after_save
-    assert_equal(true,  @burger1.id == 0 )
+    assert_equal(true,  @burger1.id == nil )
     @burger1.save
-    binding.pry
     assert_equal(true,  @burger1.id.is_a?(Fixnum) && @burger1.id != 0 )
   end
 
