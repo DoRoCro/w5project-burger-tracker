@@ -26,7 +26,7 @@ CREATE TABLE restaurants (
 CREATE TABLE burgers (
   id SERIAL4 PRIMARY KEY,
   name VARCHAR(255),
-  price DECIMAL(8,2),
+  price INT,
   restaurant_id INT4 REFERENCES restaurants(id),
   preference INT4
 );

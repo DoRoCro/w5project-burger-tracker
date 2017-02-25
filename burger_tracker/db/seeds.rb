@@ -58,6 +58,7 @@ options6 = {
 }
 
 @burger5 = Burger.new(options5)
-@burger5 = Burger.new(options6)
-
+@burger6 = Burger.new(options6)
+@burger5.save
+@burger6.save
 
