@@ -64,9 +64,11 @@ class TestDeal < Minitest::Test
     end
 
     def test_deal_has_params
-      
       assert_equal('Big Opening 2 for 1', @deal1.label )
       assert_equal(@restaurant3.id, @deal1.restaurant_id )
+      assert_equal([@burger1, @burger2], @deal1.applies_to )
+      date = Date.parse("2017-03-02")
+      assert_equal(date, @deal1.day)
     end
 end
 
