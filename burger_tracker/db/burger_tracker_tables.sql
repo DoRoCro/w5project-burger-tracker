@@ -4,8 +4,8 @@ DROP TABLE IF EXISTS restaurants;
 DROP TABLE IF EXISTS addresses;
 
 -- the following table is named to work with the access routines which assume
--- a mapping of ruby object Class 'name' to SQL table 'names'
--- unfortunately normal english breaks this for the case of address
+-- a mapping of ruby object Class 'Name' to SQL table 'names'
+-- unfortunately normal English breaks this for the case of address...  alternative would be to change name to Location 
 
 CREATE TABLE addresss (
   id SERIAL4 PRIMARY KEY,
