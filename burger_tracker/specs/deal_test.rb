@@ -21,5 +21,5 @@ options6 = {
 }
 @deal1 = Deal.new(options6)
 
-binding.pry
+# binding.pry
 @deal1.save

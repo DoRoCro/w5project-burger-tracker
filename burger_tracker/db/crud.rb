@@ -11,12 +11,15 @@ class Crud
 
 # # CREATE METHODS
 
-  def save()                                          
+  def save()  
+    arrays_to_save = []       # to deal with any list arrays in instance variables                                
     sql = "INSERT INTO #{self.class.get_table_from_class} 
       ( #{self.get_table_fields}) 
-      VALUES (#{self.get_values_list}) RETURNING * ;"
+      VALUES (#{self.get_values_list()}) RETURNING * ;"
     db_data = SqlRunner.run(sql)
     @id = db_data.first['id'].to_i
+    binding.pry
+    self.arrays_to_save.each {|array| save_array_1_to_many(array, self)}
     return self.class.new(db_data.first)
   end
 
@@ -80,7 +83,7 @@ class Crud
     table_fields = ""
     variables = self.instance_variables      
     variables.each do |x| 
-      table_fields += x.to_s.delete("@") + ", " 
+      table_fields += x.to_s.delete("@") + ", " unless instance_variable_get(x).class == Array
     end
     return table_fields.chop!.chop!   # strip trailing comma from string
   end
@@ -89,11 +92,12 @@ class Crud
     variables = self.instance_variables     # instance_variables() returns array of symbols of form :@varname
     values_list = ""
     variables.each do |x|                   # want to single quote strings in SQL, not quote other types 
-      if instance_variable_get(x).class == String
+      if instance_variable_get(x).class == Array
+          # skip - no @id to use yet
+      elsif instance_variable_get(x).class == String
         values_list += "'" + instance_variable_get(x).to_s + "', "
-      elsif instance_variable_get(x).class == Array
-          # special handling for 1-n relationship assuming array all of same class
-          x.save_array_1_to_many
+      elsif instance_variable_get(x).class == Date
+        values_list += "'" + instance_variable_get(x).to_s + "', "
       else
         values_list += instance_variable_get(x).to_s + ", "
       end
@@ -101,10 +105,26 @@ class Crud
     values_list.chop!.chop!         # strip trailing comma and space from assembled string
   end
 
-  def save_array_1_to_many
-    self.each do
+  def arrays_to_save
+    arrays = []
+    variables = self.instance_variables
+    variables.each do |x| 
+      if instance_variable_get(x).class == Array
+        arrays << instance_variable_get(x)
+      end
+    end
+    return arrays
+  end
+
+  def save_array_1_to_many(array_x, parent)
+    array_x.each do |element|
       # save each element into a table (arrayelement.class)s_for_(object.class)s
       # as a 1 to many relation
+      table_name = element.class.to_s.downcase  + "s_for_" + parent.class.to_s.downcase + "s"
+      sql = "INSERT INTO #{table_name} 
+      ( #{element.class.to_s.downcase}_id, #{parent.class.to_s.downcase}_id ) 
+      VALUES (#{element.id}, #{parent.id}) RETURNING * ;"
+      db_data = SqlRunner.run(sql)
     end
   end
 end

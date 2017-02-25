@@ -11,8 +11,8 @@ class Deal < Crud
     @restaurant_id = options['restaurant_id']
   end
 
-  def save()
+  # def save()
 
-  end
+  # end
 
 end
