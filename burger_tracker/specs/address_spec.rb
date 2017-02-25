@@ -42,5 +42,10 @@ class TestAddress < Minitest::Test
     assert_nil(@address_no_id2.id)
  end
 
-  
+ def test_address_has_id_afer_save
+    @address_no_id1.save()
+    assert_equal(true,  @address_no_id1.id != 0)
+    puts "address_no_id1.id =  #{@address_no_id1.id} after save"
+end
+
 end
