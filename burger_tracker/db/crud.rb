@@ -61,7 +61,7 @@ class Crud
 
 
 # # DELETE METHODS
-# # Note - relies on SQL ON DELETE CASCADE to tidy up join tables for 1..m join tables
+# # Note - relies on SQL ON DELETE CASCADE to tidy up join tables for 1..n join tables
   def self.delete_all()
     sql = "DELETE FROM #{self.get_table_from_class} ;"
     db_data = SqlRunner.run(sql)

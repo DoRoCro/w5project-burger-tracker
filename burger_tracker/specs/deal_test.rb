@@ -31,3 +31,9 @@ binding.pry
 # now break it by updating burgers array
 @deal1.set_burgers([@burger1])
 @deal1.update
+
+# test find_by_id on objects
+
+address3 = Address.find_by_id(@address1.id)
+
+
