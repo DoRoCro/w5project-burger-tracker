@@ -20,7 +20,7 @@ CREATE TABLE addresss (
 CREATE TABLE restaurants (
   id SERIAL4 PRIMARY KEY,
   name VARCHAR(255),
-  address_id INT4 REFERENCES addresss(id)
+  address_id INT4 REFERENCES addresss(id) ON DELETE CASCADE
   );
 
 CREATE TABLE burgers (

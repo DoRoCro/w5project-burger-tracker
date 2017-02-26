@@ -46,10 +46,31 @@ puts "passed restaurant.address check post_code = #{Restaurant.find_by_id(@resta
 # can't check objects are == because they are different object with the same content but different ruby internal id...
 
 puts "passed restaurant.burgers check burger = #{@restaurant3.burgers[0].name}" if @restaurant3.burgers[0].name == @burger1.name && @restaurant3.burgers[1].name == @burger2.name
-
 puts "passed restaurant.deals check label =  #{@restaurant3.deals[0].label}" if @restaurant3.deals[0].label == @deal1.label
+puts "passed restaurant.deals[0].burgers.name check name = #{@restaurant3.deals[0].burgers[0].name}" if @restaurant3.deals[0].burgers[0].name == @deal1.burgers[0].name
+
+# check all() methods
+puts "there are #{Restaurant.all.count} restaurants in the database"
+puts "there are #{Address.all.count} addresses in the database"
+puts "there are #{Burger.all.count} burgers in the database"
+puts "there are #{Deal.all.count} deals in the database"
+
+# check delete() methods
 binding.pry
-puts "passed restaurant.deals[0].burgers check name = #{@restaurant3.deals[0].burgers[0].name}" # if @restaurant3.deals[0].burgers[0].name == @deal1.burgers[0].name
+puts "deleting address @address1, should cascade deletions "
+@address1.delete   #should cascade to delete burgers / deals / burgers_for_deals entries
+puts "there are #{Restaurant.all.count} restaurants in the database"
+puts "there are #{Address.all.count} addresses in the database"
+puts "there are #{Burger.all.count} burgers in the database"
+puts "there are #{Deal.all.count} deals in the database"
+
+puts "deleting all addresses"
+Address.delete_all
+
+puts "there are #{Restaurant.all.count} restaurants in the database"
+puts "there are #{Address.all.count} addresses in the database"
+puts "there are #{Burger.all.count} burgers in the database"
+puts "there are #{Deal.all.count} deals in the database"
 
 
 nil
