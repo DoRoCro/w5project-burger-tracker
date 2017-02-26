@@ -17,4 +17,10 @@ class Restaurant < Crud
     sql = "SELECT * from #{ __method__ } WHERE restaurant_id = #{@id}"
     return Burger.get_many(sql)
   end
+
+  def deals
+    sql = "SELECT * from #{ __method__ } WHERE restaurant_id = #{@id}"    # might DRY this sometime
+    return Deal.get_many(sql)
+  end
+
 end

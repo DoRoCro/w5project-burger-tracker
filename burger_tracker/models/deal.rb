@@ -12,13 +12,20 @@ class Deal < Crud
     @discount = options['discount']
   end
 
-  
+
   def set_discount(discount)
     @discount = discount
   end
 
   def set_burgers(burger_list)
     @burgers = burger_list
+  end
+
+  def burgers
+    sql = "SELECT b.* from #{ __method__ } b 
+          INNER JOIN burgers_for_deals bfd ON bfd.burger_id = b.id
+          WHERE deal_id = #{@id}"
+    return Burger.get_many(sql)
   end
 
 end

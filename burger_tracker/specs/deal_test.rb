@@ -42,12 +42,15 @@ address3.telephone = "+44 1968 123456"
 address3.update
 
 
-puts "passed restaurant.address check"  if @address1.post_code == Restaurant.find_by_id(@restaurant3.id).address.post_code
+puts "passed restaurant.address check post_code = #{Restaurant.find_by_id(@restaurant3.id).address.post_code}"  if @address1.post_code == Restaurant.find_by_id(@restaurant3.id).address.post_code
 # can't check objects are == because they are different object with the same content but different ruby internal id...
 
-puts "passed restaurant.burgers check" if @restaurant3.burgers[0].name == @burger1.name && @restaurant3.burgers[1].name == @burger2.name
+puts "passed restaurant.burgers check burger = #{@restaurant3.burgers[0].name}" if @restaurant3.burgers[0].name == @burger1.name && @restaurant3.burgers[1].name == @burger2.name
 
+puts "passed restaurant.deals check label =  #{@restaurant3.deals[0].label}" if @restaurant3.deals[0].label == @deal1.label
 binding.pry
+puts "passed restaurant.deals[0].burgers check name = #{@restaurant3.deals[0].burgers[0].name}" # if @restaurant3.deals[0].burgers[0].name == @deal1.burgers[0].name
+
 
 nil
 
