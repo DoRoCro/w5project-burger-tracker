@@ -27,13 +27,20 @@ options6 = {
 @deal1.set_discount(0.4)
 @deal1.update
 
-binding.pry
 # now break it by updating burgers array
 @deal1.set_burgers([@burger1])
 @deal1.update
 
-# test find_by_id on objects
+# test find_by_id and update on address
+address3 = Address.find_by_id(@address2.id)
 
-address3 = Address.find_by_id(@address1.id)
+address3.street_addr = "44"
+address3.street = "High Street"
+address3.city = "Biggar"
+address3.post_code = "EH21 7AS"
+address3.telephone = "+44 1968 123456"
+binding.pry
+address3.update
 
+puts "passed  restaurant address check"  if @address1 == Restaurant.find_by_id(@restaurant3.id).address  
 

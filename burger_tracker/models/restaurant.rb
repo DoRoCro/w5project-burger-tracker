@@ -9,4 +9,7 @@ class Restaurant < Crud
     @address_id = options['address_id']
   end
 
+  def address
+
+  end
 end
