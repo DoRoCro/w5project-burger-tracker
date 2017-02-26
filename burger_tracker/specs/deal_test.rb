@@ -21,8 +21,12 @@ options6 = {
 }
 @deal1 = Deal.new(options6)
 
-binding.pry
 @deal1.save
 
+# check update functionality
 @deal1.set_discount(0.4)
 @deal1.update
+
+binding.pry
+# now break it by updating burgers array
+@deal1.set_burgers(@burger1)

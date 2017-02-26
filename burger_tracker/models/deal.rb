@@ -16,4 +16,8 @@ class Deal < Crud
     @discount = discount
   end
 
+  def set_burgers(burger_list)
+    @burgers = burger_list
+  end
+
 end
