@@ -39,13 +39,15 @@ address3.street = "High Street"
 address3.city = "Biggar"
 address3.post_code = "EH21 7AS"
 address3.telephone = "+44 1968 123456"
-binding.pry
 address3.update
 
 
-puts "passed restaurant address check"  if @address1.post_code == Restaurant.find_by_id(@restaurant3.id).address.post_code
-# can't check objects are == because they are different object with the same content
+puts "passed restaurant.address check"  if @address1.post_code == Restaurant.find_by_id(@restaurant3.id).address.post_code
+# can't check objects are == because they are different object with the same content but different ruby internal id...
 
+puts "passed restaurant.burgers check" if @restaurant3.burgers[0].name == @burger1.name && @restaurant3.burgers[1].name == @burger2.name
+
+binding.pry
 
 nil
 
