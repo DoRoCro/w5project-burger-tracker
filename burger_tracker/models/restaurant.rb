@@ -10,6 +10,6 @@ class Restaurant < Crud
   end
 
   def address
-
+    return Address.find_by_id(self.address_id)
   end
 end

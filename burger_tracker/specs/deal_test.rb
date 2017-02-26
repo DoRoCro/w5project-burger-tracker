@@ -42,5 +42,10 @@ address3.telephone = "+44 1968 123456"
 binding.pry
 address3.update
 
-puts "passed  restaurant address check"  if @address1 == Restaurant.find_by_id(@restaurant3.id).address  
+
+puts "passed restaurant address check"  if @address1.post_code == Restaurant.find_by_id(@restaurant3.id).address.post_code
+# can't check objects are == because they are different object with the same content
+
+
+nil
 
