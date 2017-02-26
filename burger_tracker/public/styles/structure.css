@@ -1,0 +1,35 @@
+body {
+  background: goldenrod url('/images/burger-clipart.png');
+  background-size: 100%;
+  background-repeat: repeat;
+  color: black ;
+  font-family: 'Baloo' ;
+  padding: 0px;
+  margin: 0px;
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Baloo';
+  margin: 0px;
+  padding: 0px;
+}
+
+nav {
+  padding: 0px;
+  margin: 0px;
+  padding-right: 25px;
+}
+
+nav ul li {
+  margin-bottom: 15px;
+  text-transform: uppercase;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex--row {
+  flex-direction: row;
+}
