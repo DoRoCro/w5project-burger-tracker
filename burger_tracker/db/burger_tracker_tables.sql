@@ -27,7 +27,7 @@ CREATE TABLE burgers (
   id SERIAL4 PRIMARY KEY,
   name VARCHAR(255),
   price INT,
-  restaurant_id INT4 REFERENCES restaurants(id), ON DELETE CASCADE
+  restaurant_id INT4 REFERENCES restaurants(id) ON DELETE CASCADE,
   preference INT4
 );
 

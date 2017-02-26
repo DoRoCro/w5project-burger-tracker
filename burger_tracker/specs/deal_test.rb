@@ -29,4 +29,5 @@ options6 = {
 
 binding.pry
 # now break it by updating burgers array
-@deal1.set_burgers(@burger1)
+@deal1.set_burgers([@burger1])
+@deal1.update

@@ -12,6 +12,7 @@ class Deal < Crud
     @discount = options['discount']
   end
 
+  
   def set_discount(discount)
     @discount = discount
   end

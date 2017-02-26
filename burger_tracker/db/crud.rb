@@ -55,12 +55,13 @@ class Crud
              = ( #{self.get_values_list} )
              WHERE id = #{@id} ; "
     result = SqlRunner.run(sql)
+    self.arrays_to_save.each {|array| update_array_1_to_many(array, self)}
     return 
   end
 
 
 # # DELETE METHODS
-
+# # Note - relies on SQL ON DELETE CASCADE to tidy up join tables for 1..m join tables
   def self.delete_all()
     sql = "DELETE FROM #{self.get_table_from_class} ;"
     db_data = SqlRunner.run(sql)
@@ -123,6 +124,22 @@ class Crud
       ( #{element.class.to_s.downcase}_id, #{parent.class.to_s.downcase}_id ) 
       VALUES (#{element.id}, #{parent.id}) RETURNING * ;"
       db_data = SqlRunner.run(sql)
+    end
+  end
+
+  def update_array_1_to_many(array_x, parent)
+    # find & delete existing entries from join table and replace with new/updated
+    table_name = array_x[0].class.to_s.downcase  + "s_for_" + parent.class.to_s.downcase + "s"
+  
+    sql1 = "DELETE FROM #{table_name} 
+            WHERE #{parent.class.to_s.downcase}_id = #{parent.id} RETURNING *;"
+    db_data = SqlRunner.run(sql1)
+  
+    array_x.each do |element|
+      sql2 = "INSERT INTO #{table_name} 
+              ( #{element.class.to_s.downcase}_id, #{parent.class.to_s.downcase}_id ) 
+              VALUES (#{element.id}, #{parent.id}) RETURNING * ;"
+      db_data = SqlRunner.run(sql2)
     end
   end
 end
