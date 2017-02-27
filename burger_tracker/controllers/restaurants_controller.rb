@@ -54,9 +54,11 @@ get '/restaurants/:id/burgers/new' do
   erb ( :"restaurants/burgers/new" )
 end
 
-post '/restaurants/:id/burgers' do
-  # edit form for new burger for given restaurant
-  erb ( :"restaurants/burgers/new" )
+post '/restaurants/:id/burgers/:burger_id' do
+  # edit form for burger for given restaurant
+  burger = Burger.new(params)
+  burger.update
+  redirect to ( :"restaurants/#{burger.restaurant_id}" )
 end
 
 
