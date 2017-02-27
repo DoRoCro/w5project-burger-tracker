@@ -62,7 +62,6 @@ end
 
 post '/restaurants/:restaurant_id/burgers/:burger_id' do
   # edit form for burger for given restaurant
-  binding.pry
   params['id'] = params[:burger_id]
   burger = Burger.new(params)
   burger.update
