@@ -10,18 +10,20 @@
 <p><%= @restaurant.address.city %></p>
 <p><%= @restaurant.address.post_code %></p>
 <p><%= @restaurant.address.telephone %></p>
+
+<a class="link-to-details" href="/restaurants/<%= @restaurant.id %>/edit">Edit details</a>
 <hr>
 <h2>Available burgers</h2>
-
 <!-- list burgers for restaurant -->
 <!-- for each burger show -->
 <% @restaurant.burgers.each do |burger| %>
   <!-- MVP label -->
 <p>Name: <%= burger.name %></p>
-  <!-- price -->
-<p>Price: <%= burger.price %></p>
+  <!-- price  Enhancement - show £x.xx instead of pence -->
+<p>Price: <%= burger.price %>p</p>
   <!-- preference -->
 <p>Stars: <% burger.preference.times do %> <%= p "* " %> <% end %></p>
+<hr>
 <% end %>
-  <!-- Enhancement - order by preference or by name or by in next deals -->
+  <!-- Enhancement - order by preference or by name or by price or when next in a deal -->
  
