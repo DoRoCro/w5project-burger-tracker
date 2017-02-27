@@ -34,7 +34,14 @@ end
 
 get '/restaurants/:id/edit' do
   # edit form for update restaurant details
+  @restaurant = Restaurant.find_by_id(params['id'])
   erb ( :"restaurants/edit" )
+end
+
+post 'restaurants/:id'  do
+  # update from edit form
+
+  redirect to '/restaurants/:id'
 end
 
 get '/restaurants/:id/burgers/new' do

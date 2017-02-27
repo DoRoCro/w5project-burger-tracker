@@ -1,0 +1,38 @@
+<form method="POST" action="/restaurants<% @restaurant.name %>">
+  
+<!-- Restaurant details -->
+<p>
+<label for="name">Restaurant Name: </label>
+  <input id="name" type="text" name="name" value="<%=@restaurant.name%>"/>
+  </p>
+
+<!-- address details -->
+
+<p>
+  <label for="street-addr">Number: </label>
+  <input id="street-addr" type="text" name="street_addr"/ value="<%= @restaurant.address.street_addr %>">
+</p>
+<p>
+  <label for="street">Street: </label>
+  <input id="street" type="text" name="street" value="<%= @restaurant.address.street %>"/>
+</p>
+<p>
+  <label for="area">Area: </label>
+  <input id="area" type="text" name="area" value="<%= @restaurant.address.area %>"/>
+</p>
+<p>
+  <label for="city">Town/City: </label>
+  <input id="city" type="text" name="city" value="<%= @restaurant.address.city %>"/>
+</p>
+<p>
+  <label for="post-code">Post Code: </label>
+  <input id="post-code" type="text" name="post_code" value="<%= @restaurant.address.post_code %>"/>
+</p>
+<p>
+  <label for="telephone">Telephone: </label>
+  <input id="telephone" type="text" name="telephone" value="<%= @restaurant.address.telephone %>"/>
+</p>
+
+<input class="btn btn--action" type='submit' value="Update Restaurant details">
+
+</form>
