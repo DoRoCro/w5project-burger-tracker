@@ -47,11 +47,18 @@ post '/restaurants/:id/addresses/:address_id'  do
   redirect to "/restaurants/#{restaurant.id}"
 end
 
-get '/restaurants/:id/burgers/new' do
+get '/restaurants/:restaurant_id/burgers/new' do
   # edit form for new burger for given restaurant
+  @restaurant = Restaurant.find_by_id(params[:restaurant_id])
   erb ( :"restaurants/burgers/new" )
 end
 
+post '/restaurants/:restaurant_id/burgers' do
+  burger = Burger.new(params)
+  burger.save
+  # edit form for new burger for given restaurant
+  redirect to "/restaurants/#{burger.restaurant.id}"
+end
 
 get '/restaurants/:restaurant_id/burgers/:burger_id/edit' do
   # edit form for burger for given restaurant
@@ -59,17 +66,15 @@ get '/restaurants/:restaurant_id/burgers/:burger_id/edit' do
   erb ( :"restaurants/burgers/edit" )
 end
 
-
 post '/restaurants/:restaurant_id/burgers/:burger_id' do
   # edit form for burger for given restaurant
   params['id'] = params[:burger_id]
   burger = Burger.new(params)
   burger.update
-  redirect to ( :"restaurants/#{burger.restaurant_id}" )
+  redirect to "/restaurants/#{burger.restaurant_id}" 
 end
 
-
-get '/restaurants/:id/deals' do
+get '/restaurants/:restaurant_id/deals' do
   # list deals for restaurant
   erb ( :"restaurants/deals/index" )
 end

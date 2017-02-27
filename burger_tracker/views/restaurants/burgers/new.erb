@@ -1,0 +1,25 @@
+<form method="POST" action="/restaurants/<%= @restaurant.id %>/burgers">
+  
+<!-- Restaurant details -->
+<p>
+  <label>Restaurant Name: <%=@restaurant.name%></label>
+</p>
+
+<!-- burger details -->
+
+<p>
+  <label for="name">Name: </label>
+  <input id="name" type="text" name="name" />
+</p>
+<p>
+  <label for="price">Price: </label>
+  <input id="price" type="text" name="price" />p
+</p>
+<p>
+  <label for="preference">Preference: </label>
+  <input id="preference" type="number" name="preference" min=1 max=5 step=1 />
+</p>
+
+<input class="btn btn--action" type='submit' value="Add new burger">
+
+</form>
