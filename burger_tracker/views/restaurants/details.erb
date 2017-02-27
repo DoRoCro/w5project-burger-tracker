@@ -1,12 +1,15 @@
 <!-- Restaurant Details page -->
 <h1>Details for <%=@restaurant.name%></h1>
-<!-- MVP show name -->
+<!-- MVP show name  - done in title-->
 <!-- MVP show address details -->
-
-<!-- list burgers for restaurant -->
-<!-- for each burger show -->
-  <!-- MVP label -->
-  <!-- price -->
-  <!-- preference -->
-  <!-- Enhancement - order by preference or by name or by in next deals -->
+<h2>Address:</h2>
+<p>
+  <%=@restaurant.address.street_addr %> <%=@restaurant.address.street %>
+</p>
+<p><%= @restaurant.address.area %></p>
+<p><%= @restaurant.address.city %></p>
+<p><%= @restaurant.address.post_code %></p>
+<p><%= @restaurant.address.telephone %></p>
+<hr>
+<h2>Available burgers</h2>
 

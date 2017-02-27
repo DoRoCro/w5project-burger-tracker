@@ -1,4 +1,5 @@
 require_relative('../db/crud.rb')
+require_relative('./address.rb')
 class Restaurant < Crud
 
   attr_reader :id, :name, :address_id
@@ -9,7 +10,7 @@ class Restaurant < Crud
     @address_id = options['address_id']
   end
 
-  def address
+  def address()
     return Address.find_by_id(self.address_id)
   end
 
