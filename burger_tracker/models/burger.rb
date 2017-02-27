@@ -1,4 +1,5 @@
 require_relative('../db/crud.rb')
+require_relative('./restaurant.rb')
 class Burger < Crud
 
   attr_reader :id, :name, :price, :restaurant_id, :preference
@@ -11,4 +12,7 @@ class Burger < Crud
     @preference = options['preference'].to_i
   end
 
+  def restaurant
+    return Restaurant.find_by_id(@restaurant_id)
+  end
 end

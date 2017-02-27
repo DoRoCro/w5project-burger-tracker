@@ -17,8 +17,6 @@ post '/restaurants' do
   # need to create both a new restaurant AND address entry using the returned list of parameters.
   restaurant = Restaurant.new(params)
   address = Address.new(params)
-  # puts "restaurant.name = #{restaurant.name} address.street = #{address.street}"
-  # binding.pry
   address.save()
   restaurant.address_id = address.id
   restaurant.save()
@@ -54,8 +52,18 @@ get '/restaurants/:id/burgers/new' do
   erb ( :"restaurants/burgers/new" )
 end
 
-post '/restaurants/:id/burgers/:burger_id' do
+
+get '/restaurants/:restaurant_id/burgers/:burger_id/edit' do
   # edit form for burger for given restaurant
+  @burger = Burger.find_by_id(params[:burger_id])
+  erb ( :"restaurants/burgers/edit" )
+end
+
+
+post '/restaurants/:restaurant_id/burgers/:burger_id' do
+  # edit form for burger for given restaurant
+  binding.pry
+  params['id'] = params[:burger_id]
   burger = Burger.new(params)
   burger.update
   redirect to ( :"restaurants/#{burger.restaurant_id}" )
