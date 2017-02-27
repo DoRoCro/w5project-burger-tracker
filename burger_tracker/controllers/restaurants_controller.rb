@@ -28,20 +28,25 @@ end
 get '/restaurants/:id' do
   # show individual restaurant
   # with options to edit, delete
-  @restaurant = Restaurant.find_by_id(params['id'])
+  @restaurant = Restaurant.find_by_id(params[:id])
   erb ( :"restaurants/details" )
 end
 
 get '/restaurants/:id/edit' do
   # edit form for update restaurant details
-  @restaurant = Restaurant.find_by_id(params['id'])
+  @restaurant = Restaurant.find_by_id(params[:id])
   erb ( :"restaurants/edit" )
 end
 
-post 'restaurants/:id'  do
-  # update from edit form
-
-  redirect to '/restaurants/:id'
+post '/restaurants/:id/addresses/:address_id'  do
+  # update from restaurant edit form
+  restaurant = Restaurant.new(params)
+  address = Address.new(params)
+  # correct id value for address
+  address.set_id(params[:address_id])   
+  address.update
+  restaurant.update
+  redirect to "/restaurants/#{restaurant.id}"
 end
 
 get '/restaurants/:id/burgers/new' do

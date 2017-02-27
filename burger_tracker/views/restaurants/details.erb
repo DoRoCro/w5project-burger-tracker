@@ -3,7 +3,7 @@
 <!-- MVP show name  - done in title-->
 <!-- MVP show address details -->
 <h2>Address:</h2>
-<p><%=@restaurant.address.street_addr %> <%=@restaurant.address.street %></p>
+<p><%= @restaurant.address.street_addr %> <%=@restaurant.address.street %></p>
 <p><%= @restaurant.address.area %></p>
 <p><%= @restaurant.address.city %></p>
 <p><%= @restaurant.address.post_code %></p>
@@ -21,7 +21,7 @@
 <p>Price: <%= burger.price %>p</p>
   <!-- preference -->
 <p>Stars: <% burger.preference.times do %> <%= p "* " %> <% end %></p>
-<a class="link-to-details" href="restaurants/<%= @restaurant.id %>/burgers/<%= burger.id %>/edit">Edit details</a>
+<a class="link-to-details" href="/restaurants/<%= @restaurant.id %>/burgers/<%= burger.id %>/edit">Edit details</a>
 <hr>
 <% end %>
   <!-- Enhancement - order by preference or by name or by price or when next in a deal -->

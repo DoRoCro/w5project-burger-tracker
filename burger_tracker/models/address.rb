@@ -13,4 +13,8 @@ class Address < Crud
     @telephone = options['telephone'] || ""
   end
 
+  def set_id(id)
+    # setter required for use in restaurant / address combination
+    @id = id
+  end
 end
