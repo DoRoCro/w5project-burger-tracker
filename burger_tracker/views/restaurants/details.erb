@@ -17,11 +17,11 @@
 <!-- for each burger show -->
 <% @restaurant.burgers.each do |burger| %>
   <!-- MVP label -->
-<h3>Name: </h3><%= burger.name %>
+<p>Name: <%= burger.name %></p>
   <!-- price -->
-<h3>Price: </h3><%= burger.price %>
+<p>Price: <%= burger.price %></p>
   <!-- preference -->
-<h3>Stars: </h3><%= burger.preference %>  
+<p>Stars: <% burger.preference.times do %> <%= p "* " %> <% end %></p>
 <% end %>
   <!-- Enhancement - order by preference or by name or by in next deals -->
  
