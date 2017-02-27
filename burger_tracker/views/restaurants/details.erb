@@ -13,3 +13,15 @@
 <hr>
 <h2>Available burgers</h2>
 
+<!-- list burgers for restaurant -->
+<!-- for each burger show -->
+<% @restaurant.burgers.each do |burger| %>
+  <!-- MVP label -->
+<h3>Name: </h3><%= burger.name %>
+  <!-- price -->
+<h3>Price: </h3><%= burger.price %>
+  <!-- preference -->
+<h3>Stars: </h3><%= burger.preference %>  
+<% end %>
+  <!-- Enhancement - order by preference or by name or by in next deals -->
+ 

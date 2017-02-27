@@ -1,6 +1,7 @@
 require( 'sinatra' )
 require( 'sinatra/contrib/all' )
 require_relative('controllers/restaurants_controller')
+require('pry')
 # require_relative('controllers/deals_controller')
 # require_relative('controllers/calendar_controller')
 

@@ -1,5 +1,6 @@
 require_relative('../db/crud.rb')
 require_relative('./address.rb')
+require_relative('./burger.rb')
 class Restaurant < Crud
 
   attr_reader :id, :name, :address_id
