@@ -23,7 +23,10 @@
 <p>Price: <%= burger.price %>p</p>
   <!-- preference -->
 <p>Stars: <% burger.preference.times do %> <%= p "* " %> <% end %></p>
+<a class="link-to-details" href="/burgers/<%= burger.id %>/edit">Edit details</a>
 <hr>
 <% end %>
   <!-- Enhancement - order by preference or by name or by price or when next in a deal -->
+
+<a class="link-to-details" href="/restaurants/<%= @restaurant.id %>/burgers">Add new burger (to this restaurant)</a>
  
