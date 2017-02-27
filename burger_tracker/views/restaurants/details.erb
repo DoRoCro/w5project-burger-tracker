@@ -28,3 +28,21 @@
 
 <a class="link-to-details" href="/restaurants/<%= @restaurant.id %>/burgers/new">Add new burger (to this restaurant)</a>
  
+ <hr>
+ <h2>Deals at <%=@restaurant.name%></h2>
+
+ <% @restaurant.deals.each do |deal| %>
+   <!-- MVP label -->
+ <p>Label: <%= deal.label %></p>
+   <!-- discount   -->
+ <p>Discount: <%= burger.price %>p</p>
+   <!-- list burgers included -->
+ <p>  on </p>
+   <% deal.burgers.each do |burger| %>
+   <%= burger.name %> 
+   <% end %>
+ <p></p>
+   <!-- edit link -->
+ <a class="link-to-details" href="/restaurants/<%= @restaurant.id %>/deals/<%= deal.id %>/edit">Edit details</a>
+ <hr>
+ <% end %>

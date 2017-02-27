@@ -27,6 +27,7 @@ get '/restaurants/:id' do
   # show individual restaurant
   # with options to edit, delete
   @restaurant = Restaurant.find_by_id(params[:id])
+  binding.pry
   erb ( :"restaurants/details" )
 end
 
@@ -79,7 +80,7 @@ get '/restaurants/:restaurant_id/deals' do
   erb ( :"restaurants/deals/index" )
 end
 
-get '/restaurants/:id/deals/new' do
+get '/restaurants/:restaurant_id/deals/new' do
   # form to add new deal for restaurant
   erb ( :"restaurants/deals/new" )
 end
