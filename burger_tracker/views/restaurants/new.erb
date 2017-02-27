@@ -14,7 +14,7 @@ but this would probably screw up the dtabase if it was cancelled mid transaction
 so will have to handle in a /restaurants POST handler.  Whilst there are no name conflicts, might get away with just feeding the params[] to both methods in turn... -->
 <p>
   <label for="street-addr">Number: </label>
-  <input id="street-addr" type="text" name="street-addr"/>
+  <input id="street-addr" type="text" name="street_addr"/>
 </p>
 <p>
   <label for="street">Street: </label>
@@ -22,7 +22,7 @@ so will have to handle in a /restaurants POST handler.  Whilst there are no name
 </p>
 <p>
   <label for="area">Area: </label>
-  <input id="area" type="text" name="street-area"/>
+  <input id="area" type="text" name="area"/>
 </p>
 <p>
   <label for="city">Town/City: </label>
@@ -31,6 +31,10 @@ so will have to handle in a /restaurants POST handler.  Whilst there are no name
 <p>
   <label for="post-code">Post Code: </label>
   <input id="post-code" type="text" name="post_code"/>
+</p>
+<p>
+  <label for="telephone">Telephone: </label>
+  <input id="telephone" type="text" name="telephone"/>
 </p>
 
 <input class="btn btn--action" type='submit' value="Add New Restaurant">
