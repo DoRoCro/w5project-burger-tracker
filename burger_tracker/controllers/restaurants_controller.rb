@@ -39,10 +39,10 @@ get '/restaurants/:id/edit' do
 end
 
 post '/restaurants/:id/addresses/:address_id'  do
-  # update from restaurant edit form
+  # update from restaurant edit form, restaurant and address to update
   restaurant = Restaurant.new(params)
   address = Address.new(params)
-  # correct id value for address
+  # correct id value for address which will be set to restaurant id as the POSTed 'id'
   address.set_id(params[:address_id])   
   address.update
   restaurant.update
