@@ -20,8 +20,12 @@ end
 get '/restaurants/:id' do
   # show individual restaurant
   # with options to edit, delete
+  @restaurant = Restaurant.find_by_id(params['id'])
+  erb ( :"restaurants/details" )
 end
 
-get '/restaurants/:id/new' do
+get '/restaurants/:id/edit' do
   # edit form for update
+  erb ( :"restaurants/edit" )
+
 end
