@@ -41,3 +41,9 @@ nav ul li {
 .flex--row {
   flex-direction: row;
 }
+
+.link-to-details {
+  font-size: 10px;
+  font-family: 'Muli';
+
+}
