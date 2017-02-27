@@ -97,6 +97,8 @@ class Crud
         values_list += "'" + instance_variable_get(x).to_s + "', "
       elsif instance_variable_get(x).class == Date
         values_list += "'" + instance_variable_get(x).to_s + "', "
+      elsif instance_variable_get(x).class == NilClass
+        values_list += "'" + instance_variable_get(x).to_s + "', "
       else
         values_list += instance_variable_get(x).to_s + ", "
       end

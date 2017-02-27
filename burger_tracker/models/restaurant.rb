@@ -3,7 +3,8 @@ require_relative('./address.rb')
 require_relative('./burger.rb')
 class Restaurant < Crud
 
-  attr_reader :id, :name, :address_id
+  attr_reader :id, :name
+  attr_accessor :address_id
 
   def initialize(options)
     @id = options['id'].to_i if options['id']

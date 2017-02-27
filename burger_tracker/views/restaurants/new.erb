@@ -3,15 +3,36 @@
 <form method="POST" action="/restaurants">
   
 <!-- Restaurant details -->
-
+<p>
+<label for="name">Restaurant Name: </label>
+  <input id="name" type="text" name="name"/>
+  </p>
 
 <!-- address details -->
-
 <!-- which need to go to the address update method, which could either be a follow-on page after Restaurant update
-but this would probably screw up the dtabase if it was cancelled mid transaction, so best to update both at same time... -->
+but this would probably screw up the dtabase if it was cancelled mid transaction, so best to update both at same time...
+so will have to handle in a /restaurants POST handler.  Whilst there are no name conflicts, might get away with just feeding the params[] to both methods in turn... -->
+<p>
+  <label for="street-addr">Number: </label>
+  <input id="street-addr" type="text" name="street-addr"/>
+</p>
+<p>
+  <label for="street">Street: </label>
+  <input id="street" type="text" name="street"/>
+</p>
+<p>
+  <label for="area">Area: </label>
+  <input id="area" type="text" name="street-area"/>
+</p>
+<p>
+  <label for="city">Town/City: </label>
+  <input id="city" type="text" name="city"/>
+</p>
+<p>
+  <label for="post-code">Post Code: </label>
+  <input id="post-code" type="text" name="post_code"/>
+</p>
 
-
-
-
+<input class="btn btn--action" type='submit' value="Add New Restaurant">
 
 </form>
