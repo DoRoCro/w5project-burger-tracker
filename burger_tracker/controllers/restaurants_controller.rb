@@ -27,7 +27,6 @@ get '/restaurants/:id' do
   # show individual restaurant
   # with options to edit, delete
   @restaurant = Restaurant.find_by_id(params[:id])
-  binding.pry
   erb ( :"restaurants/details" )
 end
 

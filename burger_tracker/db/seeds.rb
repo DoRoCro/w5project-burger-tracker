@@ -62,3 +62,12 @@ options6 = {
 @burger5.save
 @burger6.save
 
+options7 = {
+  'label' => "Big Opening 2 for 1",
+  'burgers' => [@burger5, @burger6],
+  'day' => "2017-03-02",
+  'restaurant_id' => restaurant3.id,
+  'discount' => 0.5
+}
+deal7 = Deal.new(options7)
+deal7.save

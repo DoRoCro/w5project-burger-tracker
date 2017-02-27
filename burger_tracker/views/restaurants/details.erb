@@ -35,11 +35,11 @@
    <!-- MVP label -->
  <p>Label: <%= deal.label %></p>
    <!-- discount   -->
- <p>Discount: <%= burger.price %>p</p>
+ <p>Discount: <%= deal.discount %></p>
    <!-- list burgers included -->
- <p>  on </p>
+ <p>  on <%= deal.day %></p>
    <% deal.burgers.each do |burger| %>
-   <%= burger.name %> 
+   <p><%= burger.name %></p> 
    <% end %>
  <p></p>
    <!-- edit link -->
