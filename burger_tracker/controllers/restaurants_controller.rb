@@ -17,11 +17,12 @@ post '/restaurants' do
   # need to create both a new restaurant AND address entry using the returned list of parameters.
   restaurant = Restaurant.new(params)
   address = Address.new(params)
-  puts "restaurant.name = #{restaurant.name} address.street = #{address.street}"
-  binding.pry
+  # puts "restaurant.name = #{restaurant.name} address.street = #{address.street}"
+  # binding.pry
   address.save()
   restaurant.address_id = address.id
   restaurant.save()
+  redirect to "/restaurants"
 end
 
 get '/restaurants/:id' do
