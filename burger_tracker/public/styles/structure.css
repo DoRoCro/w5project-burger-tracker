@@ -1,14 +1,14 @@
 body {
   background: goldenrod url('/burger-clipart.png');
-  background-size: 50%;
+  background-size: 40%;
   background-repeat: no-repeat;
   background-position: right top;
   background-attachment: fixed;
   color: black ;
-  
+
   background-color: goldenrod;  
-  font-family: 'Anton' ;
-  font-size: 20px;
+  font-family: 'Muli' ;
+  font-size: 15px;
   padding: 2px;
   margin: 2px;
 }
@@ -45,7 +45,7 @@ nav ul li {
 }
 
 .link-to-details {
-  font-size: 10px;
+  font-size: 12px;
   font-family: 'Muli';
 
 }

@@ -74,6 +74,19 @@ post '/restaurants/:restaurant_id/burgers/:burger_id' do
   redirect to "/restaurants/#{burger.restaurant_id}" 
 end
 
+get '/restaurants/:restaurant_id/burgers/:burger_id/delete' do
+  # delete confirmation form for burger for given restaurant
+  @burger = Burger.find_by_id(params[:burger_id])
+  erb ( :"restaurants/burgers/delete" )
+end
+
+post '/restaurants/:restaurant_id/burgers/:burger_id/delete' do
+  burger = Burger.find_by_id(params[:burger_id])
+  binding.pry
+  burger.delete
+  redirect to "/restaurants/#{burger.restaurant_id}"
+end
+
 get '/restaurants/:restaurant_id/deals' do
   # list deals for restaurant
   @restaurant = Restaurant.find_by_id(params[:restaurant_id])
@@ -117,4 +130,8 @@ post '/restaurants/:restaurant_id/deals/:deal_id' do
   deal = Deal.new(params)
   deal.update
   redirect to "/restaurants/#{deal.restaurant_id}/deals"
+
+
+
+
 end

@@ -1,0 +1,25 @@
+<form method="POST" action="/restaurants/<%= @burger.restaurant.id %>/burgers/<%= @burger.id %>/delete">
+  
+<!-- Restaurant details -->
+<p>
+  <label>Restaurant Name: <%=@burger.restaurant.name%></label>
+</p>
+
+<!-- burger details -->
+
+<p>
+  <label for="name">Name: </label>
+  <input disabled id="name" type="text" name="name" value="<%= @burger.name %>"/>
+</p>
+<p>
+  <label for="price">Price: </label>
+  <input disabled id="price" type="text" name="price" value="<%= @burger.price %>"/>p
+</p>
+<p>
+  <label for="preference">Preference: </label>
+  <input disabled id="preference" type="number" name="preference" min=1 max=5 step=1 value="<%= @burger.preference %>"/>
+</p>
+
+<input class="btn btn--action" type='submit' value="!!! CONFIRM DELETE BURGER !!!">
+
+</form>
