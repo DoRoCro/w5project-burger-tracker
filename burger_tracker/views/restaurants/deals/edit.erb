@@ -27,7 +27,6 @@
   <p>Burgers in deal:</p>
   <% @restaurant.burgers.each do |burger| %>
     <p>
-    <label for="burger-<%= burger.id %>"><%=burger.name%></label>
     <input id="burger-<%= burger.id %>" 
         type="checkbox" 
         name="burger_ids[]" 
@@ -35,7 +34,8 @@
         <%= if  @deal.burgers.map{|x| x.id}.include?(burger.id) 
           " checked "
         end %>
-    />  
+    <label for="burger-<%= burger.id %>"><%=burger.name%></label>
+      
     </p>
   <% end %>
 <input class="btn btn--action" type='submit' value="Update '<%= @deal.label %>' Deal for '<%= @restaurant.name %>'">
