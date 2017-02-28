@@ -7,7 +7,7 @@
  deals.each do |deal|   %>
 <ul>
   <li>
-    <a href="/restaurant/<%= deal.restaurant.id %>/deals/<%= deal.id %>">
+    <a href="/restaurants/<%= deal.restaurant.id %>/deals/<%= deal.id %>">
     <%= deal.label %></a> <em><%= deal.restaurant.name %> </em> <%=deal.discount.to_f * 100.0  %>%
     <hr>
   </li>

@@ -32,5 +32,11 @@ class Deal < Crud
   def restaurant
     return Restaurant.find_by_id(@restaurant_id)
   end
-  
+
+  # some selected Date handling
+  def day_of_week
+    @day.strftime("%A")
+  end
+
+
 end

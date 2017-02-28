@@ -1,0 +1,43 @@
+<form method="GET" action="/restaurants/<%= @restaurant.id %>/deals/<%= @deal.id %>/edit">
+<%binding.pry%>  
+<!-- Show Restaurant details -->
+<p>
+  <label>Restaurant Name: <%=@restaurant.name%></label>
+</p>
+<!-- Deal details -->
+<!-- Label for deal -->
+<p>
+  <label for="label">Name for deal: </label>
+  <input disabled id="label" type="text" name="label" value="<%= @deal.label %>" />
+</p>
+<!-- Day of deal  (enhancement - as a range creating multiple 1 day deal entries, or multi-day deal) -->
+<p>
+  <label for="day">Day of deal: (YYYY-MM-DD) </label>
+  <input disabled id="day" type="text" name="day"  value="<%= @deal.day_of_week %>"/>
+</p>
+
+<!-- discount -->
+<p>
+  <label for="discount">Discount as fraction: </label>
+  <input disabled id="discount" type="number" name="discount" min=0 max=1/ step=0.01 value="<%= @deal.discount %>" />
+</p>
+
+<!-- Select burgers from list of burgers for restaurant
+  as checkbox list -->
+  <p>Burgers in deal:</p>
+  <% @restaurant.burgers.each do |burger| %>
+    <p>
+    <input disabled id="burger-<%= burger.id %>" 
+        type="checkbox" 
+        name="burger_ids[]" 
+        value="<%= burger.id %>" 
+        <%= if  @deal.burgers.map{|x| x.id}.include?(burger.id) 
+          " checked "
+        end %>
+    <label for="burger-<%= burger.id %>"><%=burger.name%></label>
+      
+    </p>
+  <% end %>
+<input class="btn btn--action" type='submit' value="Edit '<%= @deal.label %>' Deal for '<%= @restaurant.name %>'">
+
+</form>

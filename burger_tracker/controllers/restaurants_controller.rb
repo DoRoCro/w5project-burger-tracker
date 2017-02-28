@@ -124,6 +124,13 @@ get '/restaurants/:restaurant_id/deals/:deal_id/edit' do
   erb ( :"restaurants/deals/edit" )
 end
 
+get '/restaurants/:restaurant_id/deals/:deal_id' do
+  @deal = Deal.find_by_id(params[:deal_id])
+  @restaurant = @deal.restaurant
+  erb ( :"restaurants/deals/details" )
+end
+
+
 post '/restaurants/:restaurant_id/deals/:deal_id' do
   # update code to deal with list of burger_ids returned
   burgers_for_deal = []
