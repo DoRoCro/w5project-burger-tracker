@@ -1,0 +1,15 @@
+<h1>Deal listing</h1>
+<p></p>
+<hr>
+<!-- ruby code to get list do -->
+<%
+ deals = Deal.all.sort_by!{|x| x.label} 
+ deals.each do |deal|   %>
+<ul>
+  <li>
+    <a href="/restaurant/<%= deal.restaurant.id %>/deals/<%= deal.id %>">
+    <%= deal.label %></a> <em><%= deal.restaurant.name %> </em> <%=deal.discount.to_f * 100.0  %>%
+    <hr>
+  </li>
+</ul>
+<% end %> <!-- ruby end -->
