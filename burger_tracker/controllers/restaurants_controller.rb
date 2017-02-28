@@ -84,3 +84,8 @@ get '/restaurants/:restaurant_id/deals/new' do
   # form to add new deal for restaurant
   erb ( :"restaurants/deals/new" )
 end
+
+get '/restaurants/:restaurant_id/deals/:deal_id/edit' do
+  # form to edit deal for restaurant
+  erb ( :"restaurants/deals/new" )
+end

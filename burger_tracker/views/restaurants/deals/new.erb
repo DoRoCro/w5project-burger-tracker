@@ -1,0 +1,26 @@
+<form method="POST" action="/restaurants/<%= @restaurant.id %>/deals">
+  
+<!-- Show Restaurant details -->
+<p>
+  <label>Restaurant Name: <%=@restaurant.name%></label>
+</p>
+
+<!-- Deal details -->
+<!-- Label for deal -->
+<!-- Day of deal  (enhancement - as a range creating multiple 1 day deal entries, or multi-day deal) -->
+<!-- discount -->
+<!-- Select burgers from list of burgers for restaurant
+  as checkbox list -->
+
+<p>
+  <label for="label">Name for deal: </label>
+  <input id="label" type="text" name="label" />
+</p>
+<p>
+  <label for="discount">Discount as fraction: </label>
+  <input id="discount" type="number" name="discount" min=0 max=1/ step=0.01>p
+</p>
+
+<input class="btn btn--action" type='submit' value="Add new Deal for <%=@restaurant.name%>">
+
+</form>
