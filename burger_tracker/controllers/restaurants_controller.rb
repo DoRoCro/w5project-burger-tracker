@@ -101,15 +101,20 @@ end
 
 post '/restaurants/:restaurant_id/deals' do
   params['restaurant_id'] = params[:restaurant_id]
-  # assemble burger list from burger_ids[] 
-  burgers_for_deal = []
-  params['burger_ids'].each do |id|
-    burgers_for_deal << Burger.find_by_id(id)
+  if params['burger_ids']
+    # assemble burger list from burger_ids[] 
+    burgers_for_deal = []
+    params['burger_ids'].each do |id|
+      burgers_for_deal << Burger.find_by_id(id)
+    end
+    params['burgers'] = burgers_for_deal    # DRY - refactor later
+    deal = Deal.new(params)
+    deal.save
+    redirect to "/restaurants/#{deal.restaurant_id}/deals"
+  else
+    @error_message = "No Burgers selected - cannot save/update deal with no burgers, please try again"
+    erb( :"error_page")
   end
-  params['burgers'] = burgers_for_deal    # DRY - refactor later
-  deal = Deal.new(params)
-  deal.save
-  redirect to "/restaurants/#{deal.restaurant_id}/deals"
 end
 
 get '/restaurants/:restaurant_id/deals/:deal_id/edit' do
@@ -122,14 +127,19 @@ end
 post '/restaurants/:restaurant_id/deals/:deal_id' do
   # update code to deal with list of burger_ids returned
   burgers_for_deal = []
-  params['burger_ids'].each do |id|
-    burgers_for_deal << Burger.find_by_id(id)
+  if params['burger_ids']
+    params['burger_ids'].each do |id|
+      burgers_for_deal << Burger.find_by_id(id)
+    end
+    params['burgers'] = burgers_for_deal    # DRY - refactor later
+    params['id'] = params['deal_id']
+    deal = Deal.new(params)
+    deal.update
+    redirect to "/restaurants/#{deal.restaurant_id}/deals"
+  else
+    @error_message = "No Burgers selected - cannot save/update deal with no burgers, please try again"
+    erb( :"error_page")
   end
-  params['burgers'] = burgers_for_deal    # DRY - refactor later
-  params['id'] = params['deal_id']
-  deal = Deal.new(params)
-  deal.update
-  redirect to "/restaurants/#{deal.restaurant_id}/deals"
 
 
 
