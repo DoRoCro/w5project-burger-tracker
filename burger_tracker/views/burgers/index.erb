@@ -1,0 +1,20 @@
+<h1>Burger listing</h1>
+<p></p>
+<hr>
+<!-- ruby code to get list do -->
+<%
+ burgers = Burger.all.sort_by!{|x| x.name} 
+ burgers.each do |burger|   %>
+<ul>
+  <li>
+    <!-- MVP restaurant name  -->
+    <%= burger.name %> <em><%= burger.restaurant.name %> </em> <%=burger.price %>pence 
+    <!-- Extension restaurant address optionally with nice formatting-->
+    <!-- Extension URL for restaurant as -->
+    <!-- Extension list of burgers for restaurant OR link to list of burgers for restaurant -->
+    <!--  -->
+    <!-- MVP link/button to show/edit details -->
+    <hr>
+  </li>
+</ul>
+<% end %> <!-- ruby end -->
