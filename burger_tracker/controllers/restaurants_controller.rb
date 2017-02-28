@@ -93,7 +93,7 @@ post '/restaurants/:restaurant_id/deals' do
   params['burger_ids'].each do |id|
     burgers_for_deal << Burger.find_by_id(id)
   end
-  params['burgers'] = burgers_for_deal
+  params['burgers'] = burgers_for_deal    # DRY - refactor later
   deal = Deal.new(params)
   deal.save
   redirect to "/restaurants/#{deal.restaurant_id}/deals"
@@ -101,5 +101,20 @@ end
 
 get '/restaurants/:restaurant_id/deals/:deal_id/edit' do
   # form to edit deal for restaurant
-  erb ( :"restaurants/deals/new" )
+  @deal = Deal.find_by_id(params[:deal_id])
+  @restaurant = @deal.restaurant
+  erb ( :"restaurants/deals/edit" )
+end
+
+post '/restaurants/:restaurant_id/deals/:deal_id' do
+  # update code to deal with list of burger_ids returned
+  burgers_for_deal = []
+  params['burger_ids'].each do |id|
+    burgers_for_deal << Burger.find_by_id(id)
+  end
+  params['burgers'] = burgers_for_deal    # DRY - refactor later
+  params['id'] = params['deal_id']
+  deal = Deal.new(params)
+  deal.update
+  redirect to "/restaurants/#{deal.restaurant_id}/deals"
 end

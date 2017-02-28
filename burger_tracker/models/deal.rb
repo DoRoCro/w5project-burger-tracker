@@ -1,5 +1,6 @@
 require('date')
 require_relative('../db/crud.rb')
+require_relative('./restaurant.rb')
 class Deal < Crud
   
   attr_reader :id, :label, :burgers, :day, :restaurant_id, :discount
@@ -28,4 +29,8 @@ class Deal < Crud
     return Burger.get_many(sql)
   end
 
+  def restaurant
+    return Restaurant.find_by_id(@restaurant_id)
+  end
+  
 end
