@@ -82,7 +82,21 @@ end
 
 get '/restaurants/:restaurant_id/deals/new' do
   # form to add new deal for restaurant
+  @restaurant = Restaurant.find_by_id(params[:restaurant_id])
   erb ( :"restaurants/deals/new" )
+end
+
+post '/restaurants/:restaurant_id/deals' do
+  params['restaurant_id'] = params[:restaurant_id]
+  # assemble burger list from burger_ids[] 
+  burgers_for_deal = []
+  params['burger_ids'].each do |id|
+    burgers_for_deal << Burger.find_by_id(id)
+  end
+  params['burgers'] = burgers_for_deal
+  deal = Deal.new(params)
+  deal.save
+  redirect to "/restaurants/#{deal.restaurant_id}/deals"
 end
 
 get '/restaurants/:restaurant_id/deals/:deal_id/edit' do

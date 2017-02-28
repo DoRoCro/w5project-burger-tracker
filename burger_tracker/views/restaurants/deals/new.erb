@@ -4,23 +4,37 @@
 <p>
   <label>Restaurant Name: <%=@restaurant.name%></label>
 </p>
-
 <!-- Deal details -->
 <!-- Label for deal -->
-<!-- Day of deal  (enhancement - as a range creating multiple 1 day deal entries, or multi-day deal) -->
-<!-- discount -->
-<!-- Select burgers from list of burgers for restaurant
-  as checkbox list -->
-
 <p>
   <label for="label">Name for deal: </label>
   <input id="label" type="text" name="label" />
 </p>
+<!-- Day of deal  (enhancement - as a range creating multiple 1 day deal entries, or multi-day deal) -->
+<p>
+  <label for="day">Day of deal: (YYYY-MM-DD) </label>
+  <input id="day" type="text" name="day" />
+</p>
+
+<!-- discount -->
 <p>
   <label for="discount">Discount as fraction: </label>
   <input id="discount" type="number" name="discount" min=0 max=1/ step=0.01>p
 </p>
 
+<!-- Select burgers from list of burgers for restaurant
+  as checkbox list -->
+  <p>Burgers in deal:</p>
+  <% @restaurant.burgers.each do |burger| %>
+    <p>
+    <label for="burger-<%= burger.id %>"><%=burger.name%></label>
+    <input id="burger-<%= burger.id %>" 
+        type="checkbox" 
+        name="burger_ids[]" 
+        value="<%= burger.id %>" 
+        checked>  
+    </p>
+  <% end %>
 <input class="btn btn--action" type='submit' value="Add new Deal for <%=@restaurant.name%>">
 
 </form>
