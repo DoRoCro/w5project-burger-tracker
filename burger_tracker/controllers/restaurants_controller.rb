@@ -44,7 +44,7 @@ post '/restaurants/:id/addresses/:address_id'  do
   address.set_id(params[:address_id])   
   address.update
   restaurant.update
-  redirect to "/restaurants/#{restaurant.id}"
+  redirect to "restaurants/#{restaurant.id}"
 end
 
 get '/restaurants/:restaurant_id/burgers/new' do
@@ -76,6 +76,7 @@ end
 
 get '/restaurants/:restaurant_id/deals' do
   # list deals for restaurant
+  @restaurant = Restaurant.find_by_id(params[:restaurant_id])
   erb ( :"restaurants/deals/index" )
 end
 

@@ -1,0 +1,19 @@
+
+<h2>Deals at <%=@restaurant.name%></h2>
+<hr>
+    <% @restaurant.deals.each do |deal| %>
+          <!-- MVP label -->
+        <p>Label: <%= deal.label %></p>
+          <!-- discount   -->
+        <p>Discount: <%= deal.discount %></p>
+          <!-- list burgers included -->
+        <p>Date: <%= deal.day %> </p>
+        <p>Burgers included:
+            <% deal.burgers.each do |burger| %>
+                <%= burger.name + "; " %>
+            <% end %>
+        </p>
+                <!-- edit link -->
+            <a class="link-to-details" href="/restaurants/<%= @restaurant.id %>/deals/<%= deal.id %>/edit">Edit details of deal</a>
+    <hr>
+    <% end %>
