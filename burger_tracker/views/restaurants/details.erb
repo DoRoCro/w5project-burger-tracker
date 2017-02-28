@@ -30,7 +30,8 @@
  
  <hr>
  <h2>Deals at <%=@restaurant.name%></h2>
-
+ <a class="link-to-details" href="/restaurants/<%= @restaurant.id %>/deals/new">Add a new deal to <%= @restaurant.name %></a>
+ 
  <% @restaurant.deals.each do |deal| %>
    <!-- MVP label -->
  <p>Label: <%= deal.label %></p>
