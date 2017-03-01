@@ -72,3 +72,53 @@ options7 = {
 }
 deal7 = Deal.new(options7)
 deal7.save
+
+
+options = {
+  'street_addr' =>'22',
+  'street' =>'Lothian Road',
+  'area' =>'',
+  'city' =>'Edinburgh',
+  'post_code' =>'EH1 2AB',
+  'telephone' => '+44 1234 567891'
+}
+address = Address.new(options)
+address.save
+
+options = {
+  'name' => "Even Betta Burgers",
+  'address_id' => address.id
+}
+restaurant = Restaurant.new(options4)
+restaurant.save
+
+options = {
+  'name' => "Bigger Betta Burger",
+  'price' => 999,
+  'restaurant_id' => restaurant.id,
+  'preference' => 3
+}
+
+burger3 = Burger.new(options)
+burger3.save
+
+options = {
+  'name' => "Micro Betta Burger",
+  'price' => 499,
+  'restaurant_id' => restaurant.id,
+  'preference' => 3
+}
+
+burger4 = Burger.new(options)
+burger4.save
+
+
+options = {
+  'label' => "Betta Thursdays",
+  'burgers' => [burger3, burger4],
+  'day' => "2017-03-02",
+  'restaurant_id' => restaurant3.id,
+  'discount' => 0,
+  'money_off' => 200
+}
+deal = Deal.new(options)
