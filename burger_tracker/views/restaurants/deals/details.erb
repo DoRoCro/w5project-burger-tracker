@@ -18,7 +18,7 @@
 <!-- discount -->
 <p>
   <label for="discount">Discount: </label>
-  <input disabled id="discount" type="number" name="discount" min=0 max=1/ step=0.01 value="<%= @deal.discount.to_f * 100  %>" />%
+  <input disabled id="discount" type="number" name="discount" min=0 max=1 step=0.01 value="<%= @deal.discount * 100  %>" />%
 </p>
 <p>
   <label for="money-off">Money off: </label>
@@ -36,7 +36,7 @@
         <%= if  @deal.burgers.map{|x| x.id}.include?(burger.id) 
           " checked "
         end %>
-    <label for="burger-<%= burger.id %>"><%=burger.name%> giving savings of <%= (@deal.burgers.map{|x| x.id}.include?(burger.id) ) ? @deal.savings(burger.price) : 0  %> pence </label>
+    <label for="burger-<%= burger.id %>"><%=burger.name%> giving savings of <%= (@deal.burgers.map{|x| x.id}.include?(burger.id) ) ? @deal.savings(burger.price) : 0  %> pence and price <%= burger.price - @deal.savings(burger.price) %> </label>
       
     </p>
   <% end %>

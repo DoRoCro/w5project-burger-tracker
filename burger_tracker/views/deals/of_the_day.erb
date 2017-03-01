@@ -1,15 +1,16 @@
 <h1>Deal listing for <%= Deal.int_to_weekday(params[:id].to_i) %></h1>
 <p></p>
 <hr>
-<!-- ruby code to get list do -->
+<table class="listing deals" style="width:100%">
+<tr><td>Deal label</td><td>Restaurant</td><td>Deal offer</td></tr>
 <%
  deals_of_day = @deals.sort_by!{|x| x.label} 
  deals_of_day.each do |deal|   %>
-<ul>
-  <li>
-    <a href="/restaurants/<%= deal.restaurant.id %>/deals/<%= deal.id %>">
-    <%= deal.label %></a> <em><%= deal.restaurant.name %> </em> <%=deal.discount.to_f * 100.0  %> %discount, <%= deal.money_off %>p off
-    <hr>
-  </li>
-</ul>
+  <tr>
+    <td><a href="/restaurants/<%= deal.restaurant.id %>/deals/<%= deal.id %>">
+    <%= deal.label %></a></td>
+    <td> <em><%= deal.restaurant.name %> </em> </td>
+    <td> <%=deal.discount.to_f * 100.0  %> %discount, <%= deal.money_off %>p off </td>
+  </tr>
 <% end %> <!-- ruby end -->
+</table>
