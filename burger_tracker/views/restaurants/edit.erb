@@ -36,3 +36,11 @@
 <input class="btn btn--action" type='submit' value="Update Restaurant details">
 
 </form>
+
+<form method="POST" action="/restaurants/<%= @restaurant.id %>/addresses/<%= @restaurant.address_id %>/delete">
+
+<p></p>
+
+<input class="btn btn--action-delete" type='submit' value="!!! DELETE this Restaurant and ALL its associated data">
+
+</form>
