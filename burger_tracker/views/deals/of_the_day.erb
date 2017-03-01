@@ -2,15 +2,29 @@
 <p></p>
 <hr>
 <table class="listing deals" style="width:100%">
-<tr><td>Deal label</td><td>Restaurant</td><td>Deal offer</td></tr>
-<%
- deals_of_day = @deals.sort_by!{|x| x.label} 
- deals_of_day.each do |deal|   %>
-  <tr>
-    <td><a href="/restaurants/<%= deal.restaurant.id %>/deals/<%= deal.id %>">
-    <%= deal.label %></a></td>
-    <td> <em><%= deal.restaurant.name %> </em> </td>
-    <td> <%=deal.discount.to_f * 100.0  %> %discount, <%= deal.money_off %>p off </td>
-  </tr>
-<% end %> <!-- ruby end -->
+  <tr><td>Cost / p</td><td>Restaurant</td><td>Burger</td><td>Saving / p</td><td>Stars</td><td>Deal Name</td></tr>
+  <% deals_of_day = [] %>
+  <% #binding.pry %>
+    <% @deals.each do |deal|%>
+      <% deal.burgers.each do |burger| 
+           deals_of_day << {  'restaurant' => deal.restaurant.name, 
+                              'burger' => burger.name, 
+                              'saving' => deal.savings(burger.price), 
+                              'cost' =>  burger.price - deal.savings(burger.price),
+                              'stars' => burger.preference.to_i,
+                              'dealname' => deal.label             
+                            } 
+            end  
+         end    %>
+  <% deals_of_day.sort_by!{|x| x['cost']}  %>
+  <% deals_of_day.each do |deal| %>
+    <tr>
+      <td> <%= sprintf("%0.f", deal['cost'] )  %> </td>
+      <td> <%= deal['restaurant'] %> </td>
+      <td> <%= deal['burger']  %> </td>
+      <td> <%= sprintf("%0.f", deal['saving'] ) %> </td>
+      <td> <% deal['stars'].times do |p| %> <%=  "* " %> <% end %>  </td>
+      <td> <%= deal['dealname'] %></td>
+    </tr>
+<%   end %>
 </table>

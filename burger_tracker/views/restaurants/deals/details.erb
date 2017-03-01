@@ -36,7 +36,7 @@
         <%= if  @deal.burgers.map{|x| x.id}.include?(burger.id) 
           " checked "
         end %>
-    <label for="burger-<%= burger.id %>"><%=burger.name%> giving savings of <%= (@deal.burgers.map{|x| x.id}.include?(burger.id) ) ? @deal.savings(burger.price) : 0  %> pence and price <%= burger.price - @deal.savings(burger.price) %> </label>
+    <label for="burger-<%= burger.id %>"><%=burger.name%> giving savings of <%= @deal.burgers.map{|x| x.id}.include?(burger.id)  ? sprintf( "%0.f", @deal.savings(burger.price) ) : 0  %> pence and price <%= sprintf("%0.f", burger.price - @deal.savings(burger.price) ) %> </label>
       
     </p>
   <% end %>

@@ -1,21 +1,21 @@
 
 <h2>Deals at <%=@restaurant.name%></h2>
+    <!-- New deal for restaurant link -->
+    <a class="link-to-details" href="/restaurants/<%= @restaurant.id %>/deals/new">Add a new deal for <%= @restaurant.name %> </a>
 <hr>
     <% @restaurant.deals.each do |deal| %>
           <!-- MVP label -->
         <p>Label: <%= deal.label %></p>
           <!-- discount   -->
-        <p>Discount: <%= deal.discount * 100 %>% off &amp; / or <%= deal.money_off %> pence off </p>
+        <p>Discount: <%= sprintf("%0.f",deal.discount * 100 )%>% off &amp; / or <%= deal.money_off %> pence off </p>
           <!-- list burgers included -->
         <p>Day: <%= Deal.int_to_weekday(deal.day_of_week) %> </p>
         <p>Burgers included:
             <% deal.burgers.each do |burger| %>
-                <%= "#{burger.name}, deal price £#{deal.savings(burger.price) / 100} ; " %>
+                <%= "#{burger.name}, deal price £#{sprintf("%.2f", deal.savings(burger.price) / 100 ) } ; " %>
             <% end %>
         </p>
                 <!-- edit link -->
             <a class="link-to-details" href="/restaurants/<%= @restaurant.id %>/deals/<%= deal.id %>/edit">Edit details of deal</a>
     <hr>
     <% end %>
-    <!-- New deal for restaurant link -->
-    <a class="link-to-details" href="/restaurants/<%= @restaurant.id %>/deals/new">Add a new deal for <%= @restaurant.name %> </a>

@@ -23,7 +23,7 @@
   <tr>
     <td><%= burger.name %></td>
     <td><%= burger.price %></td>
-    <td><% burger.preference.times do %> <%= p "* " %> <% end %></td>
+    <td><% burger.preference.times do |p| %> <%= "* " %> <% end %></td>
     <td><a class="link-to-details" href="/restaurants/<%= @restaurant.id %>/burgers/<%= burger.id %>/edit">Edit details</a></td>
   </tr>
   <% end %>

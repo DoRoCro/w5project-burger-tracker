@@ -117,8 +117,9 @@ options = {
   'label' => "Betta Thursdays",
   'burgers' => [burger3, burger4],
   'day' => "2017-03-02",
-  'restaurant_id' => restaurant3.id,
+  'restaurant_id' => restaurant.id,
   'discount' => 0,
   'money_off' => 200
 }
 deal = Deal.new(options)
+deal.save
