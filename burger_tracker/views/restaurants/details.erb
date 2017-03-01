@@ -12,38 +12,46 @@
 <a class="link-to-details" href="/restaurants/<%= @restaurant.id %>/edit">Edit details</a>
 <hr>
 <h2>Available burgers</h2>
+<a class="link-to-details" href="/restaurants/<%= @restaurant.id %>/burgers/new">Add new burger (to this restaurant)</a>
+<p></p>
 <!-- list burgers for restaurant -->
 <!-- for each burger show -->
-<% @restaurant.burgers.each do |burger| %>
-  <!-- MVP label -->
-<p>Name: <%= burger.name %></p>
-  <!-- price  Enhancement - show £x.xx instead of pence -->
-<p>Price: <%= burger.price %>p</p>
-  <!-- preference -->
-<p>Stars: <% burger.preference.times do %> <%= p "* " %> <% end %></p>
-<a class="link-to-details" href="/restaurants/<%= @restaurant.id %>/burgers/<%= burger.id %>/edit">Edit details</a>
-<hr>
-<% end %>
-  <!-- Enhancement - order by preference or by name or by price or when next in a deal -->
+<table class="listing burgers">
 
-<a class="link-to-details" href="/restaurants/<%= @restaurant.id %>/burgers/new">Add new burger (to this restaurant)</a>
+  <tr><th>Burger name</th><th>Price/p</th><th>Rating</th><th></th></tr>
+      <% @restaurant.burgers.each do |burger| %>
+  <tr>
+    <td><%= burger.name %></td>
+    <td><%= burger.price %></td>
+    <td><% burger.preference.times do %> <%= p "* " %> <% end %></td>
+    <td><a class="link-to-details" href="/restaurants/<%= @restaurant.id %>/burgers/<%= burger.id %>/edit">Edit details</a></td>
+  </tr>
+  <% end %>
+</table>
  
  <hr>
  <h2>Deals at <%=@restaurant.name%></h2>
  <a class="link-to-details" href="/restaurants/<%= @restaurant.id %>/deals/new">Add a new deal to <%= @restaurant.name %></a>
- 
- <% @restaurant.deals.each do |deal| %>
-   <!-- MVP label -->
- <p>Label: <%= deal.label %></p>
-   <!-- discount   -->
- <p>Discount: <%= deal.discount %></p>
-   <!-- list burgers included -->
- <p>  on <%= deal.day %></p>
-   <% deal.burgers.each do |burger| %>
-   <p><%= burger.name %> : <%= deal.savings(burger.price) %> saving, cost is <%= burger.price.to_i - deal.savings(burger.price) %> </p> 
-   <% end %>
+ <p></p>
+<table> 
+  <tr>
+    <th>Day</th><th>Label</th><th>Burger Name</th><th>Savings on deal</th><th>Cost</th><th></th>
+  </tr>
+  <% @restaurant.deals.each do |deal| %>
+    <% deal.burgers.each do |burger| %>
+      <tr>
+        <td><%= Deal.int_to_weekday(deal.day.wday) %></td>
+        <td><%= deal.label %></td>
+        <td><%= burger.name %></td>  
+        <td><%= deal.savings(burger.price) %></td>
+        <td><%= burger.price.to_i - deal.savings(burger.price) %> </td>
+        <td>
+          <a class="link-to-details" href="/restaurants/<%= @restaurant.id %>/deals/<%= deal.id %>/edit">Edit details</a>
+        </td>
+      <tr> 
+    <% end %>
+  <% end %>
+</table>
  <p></p>
    <!-- edit link -->
- <a class="link-to-details" href="/restaurants/<%= @restaurant.id %>/deals/<%= deal.id %>/edit">Edit details</a>
  <hr>
- <% end %>
