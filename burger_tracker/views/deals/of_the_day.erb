@@ -1,0 +1,15 @@
+<h1>Deal listing for <%= Deal.int_to_weekday(params[:id].to_i) %></h1>
+<p></p>
+<hr>
+<!-- ruby code to get list do -->
+<%
+ deals_of_day = @deals.sort_by!{|x| x.label} 
+ deals_of_day.each do |deal|   %>
+<ul>
+  <li>
+    <a href="/restaurants/<%= deal.restaurant.id %>/deals/<%= deal.id %>">
+    <%= deal.label %></a> <em><%= deal.restaurant.name %> </em> <%=deal.discount.to_f * 100.0  %>%
+    <hr>
+  </li>
+</ul>
+<% end %> <!-- ruby end -->

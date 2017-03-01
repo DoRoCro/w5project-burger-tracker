@@ -33,10 +33,27 @@ class Deal < Crud
     return Restaurant.find_by_id(@restaurant_id)
   end
 
-  # some selected Date handling
+  # some selected Date handling, in the deal file as this is the only Class making use of date/time
   def day_of_week
-    @day.strftime("%A")
+    # Date.wday returns 0-6 for Sunday,...Saturday
+    return @day.wday
   end
 
+  def self.deals_of_the_day(weekday)
+    deals = Deal.all()
+    deals.select! {|d| ( d.day_of_week  == weekday ) }
+    return  deals
+  end
+
+  def self.int_to_weekday(wday_num)
+    weekdays = ["Sunday",
+       "Monday",
+       "Tuesday", 
+       "Wednesday", 
+       "Thursday", 
+       "Friday", 
+       "Saturday"]
+       return weekdays[wday_num]
+  end
 
 end
