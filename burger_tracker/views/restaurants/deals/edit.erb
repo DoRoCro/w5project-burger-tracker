@@ -11,11 +11,17 @@
   <input id="label" type="text" name="label" value="<%= @deal.label %>" />
 </p>
 <!-- Day of deal  (enhancement - as a range creating multiple 1 day deal entries, or multi-day deal) -->
-<p>
+<!-- <p>
   <label for="day">Day of deal: (YYYY-MM-DD) </label>
   <input id="day" type="text" name="day"  value="<%= @deal.day %>"/>
-</p>
-
+</p> -->
+<input id="day" type="radio" name="day" value="2017-02-26" <%= "checked" if @deal.day_of_week == 0  %>>Sunday 
+<input id="day" type="radio" name="day" value="2017-02-27" <%= "checked" if @deal.day_of_week == 1  %>>Monday
+<input id="day" type="radio" name="day" value="2017-02-28" <%= "checked" if @deal.day_of_week == 2  %>>Tuesday 
+<input id="day" type="radio" name="day" value="2017-03-01" <%= "checked" if @deal.day_of_week == 3  %>>Wednesday 
+<input id="day" type="radio" name="day" value="2017-03-02" <%= "checked" if @deal.day_of_week == 4  %>>Thursday 
+<input id="day" type="radio" name="day" value="2017-03-03" <%= "checked" if @deal.day_of_week == 5  %>>Friday 
+<input id="day" type="radio" name="day" value="2017-03-04" <%= "checked" if @deal.day_of_week == 6  %>>Saturday 
 <!-- discount -->
 <p>
   <label for="discount">Discount as fraction: </label>

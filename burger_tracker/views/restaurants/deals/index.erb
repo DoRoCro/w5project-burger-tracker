@@ -7,7 +7,7 @@
           <!-- discount   -->
         <p>Discount: <%= deal.discount %></p>
           <!-- list burgers included -->
-        <p>Date: <%= deal.day %> </p>
+        <p>Day: <%= Deal.int_to_weekday(deal.day_of_week) %> </p>
         <p>Burgers included:
             <% deal.burgers.each do |burger| %>
                 <%= burger.name + "; " %>

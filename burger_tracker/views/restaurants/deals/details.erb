@@ -12,7 +12,7 @@
 <!-- Day of deal  (enhancement - as a range creating multiple 1 day deal entries, or multi-day deal) -->
 <p>
   <label for="day">Day of deal: </label>
-  <input disabled id="day" type="text" name="day"  value="<%= @deal.day_of_week %>"/>
+  <input disabled id="day" type="text" name="day"  value="<%= Deal.int_to_weekday(@deal.day_of_week) %>"/>
 </p>
 
 <!-- discount -->
