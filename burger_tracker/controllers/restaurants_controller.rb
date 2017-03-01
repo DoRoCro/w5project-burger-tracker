@@ -131,6 +131,12 @@ get '/restaurants/:restaurant_id/deals/:deal_id' do
 end
 
 
+post '/restaurants/:restaurant_id/deals/:deal_id/delete' do
+  deal = Deal.find_by_id(params[:deal_id])
+  deal.delete
+  redirect to "/restaurants/#{deal.restaurant.id}/deals"
+end
+
 post '/restaurants/:restaurant_id/deals/:deal_id' do
   # update code to deal with list of burger_ids returned
   burgers_for_deal = []

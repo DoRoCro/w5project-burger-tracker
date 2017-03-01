@@ -41,4 +41,7 @@
 <input class="btn btn--action" type='submit' value="Update '<%= @deal.label %>' Deal for '<%= @restaurant.name %>'">
 
 </form>
-
+<p></p>
+<form method="POST" action="/restaurants/<%= @restaurant.id %>/deals/<%= @deal.id %>/delete">
+  <input class="btn btn--action btn--action--delete" type='submit' value="DELETE THIS DEAL'<%= @deal.label %>' Deal for '<%= @restaurant.name %>'">
+</form>
