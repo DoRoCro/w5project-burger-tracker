@@ -44,8 +44,20 @@ post '/restaurants/:id/addresses/:address_id'  do
   address.set_id(params[:address_id])   
   address.update
   restaurant.update
-  redirect to "restaurants/#{restaurant.id}"
+  redirect to "/restaurants/#{restaurant.id}"
 end
+
+post '/restaurants/:restaurant_id/delete'  do
+  # update from restaurant edit form, restaurant and address to update
+  binding.pry
+  restaurant = Restaurant.find_by_id(params[:restaurant_id])
+  address = Address.find_by_id(restaurant.address_id)
+  # correct id value for address which will be set to restaurant id as the POSTed 'id'
+  address.delete
+  # restaurant.delete not required as deletion cascades from address
+  redirect to "/restaurants"
+end
+
 
 get '/restaurants/:restaurant_id/burgers/new' do
   # edit form for new burger for given restaurant
