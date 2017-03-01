@@ -40,7 +40,7 @@
    <!-- list burgers included -->
  <p>  on <%= deal.day %></p>
    <% deal.burgers.each do |burger| %>
-   <p><%= burger.name %></p> 
+   <p><%= burger.name %> : <%= deal.savings(burger.price) %> saving, cost is <%= burger.price.to_i - deal.savings(burger.price) %> </p> 
    <% end %>
  <p></p>
    <!-- edit link -->

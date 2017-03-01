@@ -57,7 +57,8 @@ class TestDeal < Minitest::Test
       'burgers' => [@burger1, @burger2],
       'day' => "2017-03-02",
       'restaurant_id' => @restaurant3.id,      # may be redundant info as inherited from burgers
-      'discount' => 0.5
+      'discount' => 0.5,
+      'money_off' => 0
     }
     @deal1 = Deal.new(options6)
 

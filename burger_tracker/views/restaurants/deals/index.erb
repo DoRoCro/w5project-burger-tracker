@@ -5,12 +5,12 @@
           <!-- MVP label -->
         <p>Label: <%= deal.label %></p>
           <!-- discount   -->
-        <p>Discount: <%= deal.discount %></p>
+        <p>Discount: <%= deal.discount * 100 %>% off &amp; / or <%= deal.money_off %> pence off </p>
           <!-- list burgers included -->
         <p>Day: <%= Deal.int_to_weekday(deal.day_of_week) %> </p>
         <p>Burgers included:
             <% deal.burgers.each do |burger| %>
-                <%= burger.name + "; " %>
+                <%= "#{burger.name}, deal price £#{deal.savings(burger.price) / 100} ; " %>
             <% end %>
         </p>
                 <!-- edit link -->

@@ -67,7 +67,8 @@ options7 = {
   'burgers' => [@burger5, @burger6],
   'day' => "2017-03-02",
   'restaurant_id' => restaurant3.id,
-  'discount' => 0.5
+  'discount' => 0.5,
+  'money_off' => 0
 }
 deal7 = Deal.new(options7)
 deal7.save

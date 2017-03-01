@@ -24,8 +24,14 @@
 <input id="day" type="radio" name="day" value="2017-03-04" <%= "checked" if @deal.day_of_week == 6  %>>Saturday 
 <!-- discount -->
 <p>
+Offers can be either as a fraction off (25% off = 0.25 discount factor) or money off the bill (or both):
+</p> <p>
   <label for="discount">Discount as fraction: </label>
-  <input id="discount" type="number" name="discount" min=0 max=1/ step=0.01 value="<%= @deal.discount %>" />
+  <input id="discount" type="number" name="discount" min=0 max=1/ step=0.005 value="<%= @deal.discount %>" />
+</p>
+<p>
+  <label for="money_off">Money off as pence: </label>
+  <input id="money_off" type="number" name="money_off" min=0 step=1 value="<%= @deal.money_off %>" />
 </p>
 
 <!-- Select burgers from list of burgers for restaurant

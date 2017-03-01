@@ -3,15 +3,15 @@ require_relative('../db/crud.rb')
 require_relative('./restaurant.rb')
 class Deal < Crud
   
-  attr_reader :id, :label, :burgers, :day, :restaurant_id, :discount
+  attr_reader :id, :label, :burgers, :day, :restaurant_id, :discount, :money_off
   def initialize(options)
     @id = options['id'].to_i if options['id']
     @label = options['label']
     @burgers = options['burgers']
     @day = Date.parse(options['day'])
     @restaurant_id = options['restaurant_id']
-    @discount = options['discount']
-    @money_off = options['money_off']
+    @discount = options['discount'].to_f || 0.0
+    @money_off = options['money_off'].to_i  || 0
   end
 
 
