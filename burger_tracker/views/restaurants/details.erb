@@ -3,10 +3,10 @@
 <!-- MVP show name  - done in title-->
 <!-- MVP show address details -->
 <h2>Address:</h2>
-<p><%= @restaurant.address.street_addr %> <%=@restaurant.address.street %></p>
-<p><%= @restaurant.address.area %></p>
-<p><%= @restaurant.address.city %></p>
-<p><%= @restaurant.address.post_code %></p>
+  <%= @restaurant.address.street_addr %> <%=@restaurant.address.street %>, 
+  <%= @restaurant.address.area %>, 
+  <%= @restaurant.address.city %> 
+  <%= @restaurant.address.post_code %>
 <p><%= @restaurant.address.telephone %></p>
 
 <a class="link-to-details" href="/restaurants/<%= @restaurant.id %>/edit">Edit details</a>
