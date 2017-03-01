@@ -36,7 +36,8 @@ CREATE TABLE deals (
   label VARCHAR(255),
   day DATE,
   restaurant_id INT4 REFERENCES restaurants(id) ON DELETE CASCADE,
-  discount DECIMAL(5,2)  
+  discount DECIMAL(5,2),
+  money_off DECIMAL(6,2)  
 );
 CREATE TABLE burgers_for_deals (
   deal_id INT4 REFERENCES deals(id) ON DELETE CASCADE,

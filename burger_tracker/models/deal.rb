@@ -11,6 +11,7 @@ class Deal < Crud
     @day = Date.parse(options['day'])
     @restaurant_id = options['restaurant_id']
     @discount = options['discount']
+    @money_off = options['money_off']
   end
 
 
@@ -54,6 +55,10 @@ class Deal < Crud
        "Friday", 
        "Saturday"]
        return weekdays[wday_num]
+  end
+
+  def savings(price)
+    return price.to_f * @discount + @money_off
   end
 
 end
